@@ -39,10 +39,12 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <BookShelf
                 //Need to pass in the books on the shelf
+                shelfName = 'Currently Reading'
+                booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "currentlyReading")}
               />
 
               {/*Repeat the above BookShelf for the other 2 types.*/}
-              
+
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
