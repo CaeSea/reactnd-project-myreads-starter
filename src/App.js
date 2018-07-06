@@ -17,10 +17,27 @@ class BooksApp extends React.Component {
   }
 
   // This will fetch all books from the API and store them in the bookDetails array.
+  getBooks = () => {
+    BooksAPI.getAll().then(bookDetails => (
+    this.setState({ bookDetails })
+    ))
+  }
+
+  //When the component initially loads, grab all books.
   componentDidMount() {
-    BooksAPI.getAll().then((bookDetails) => {
-      this.setState({ bookDetails })
-      console.log(this.state.bookDetails)
+    this.getBooks();
+  }
+
+  //When the component changes, (when a user chaanges a select box option) re-get the books.
+  componentDidUpdate() {
+    this.getBooks();
+  }
+
+  //When the user changes the books shelf, update our book and API.
+  changeBookShelf(book, shelf) {
+    BooksAPI.update(book, shelf).then((response) => { // This updates each shelfs array of books.
+      book.shelf = shelf;
+      //console.log(response);
     })
   }
 
@@ -41,14 +58,17 @@ class BooksApp extends React.Component {
                 <BookShelf
                   shelfName = 'Currently Reading'
                   booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "currentlyReading")}
+                  changeBookShelf = {this.changeBookShelf}
                 />
                 <BookShelf
                   shelfName = 'Want to Read'
                   booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "wantToRead")}
+                  changeBookShelf = {this.changeBookShelf}
                 />
                 <BookShelf
                   shelfName = 'Read'
                   booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "read")}
+                  changeBookShelf = {this.changeBookShelf}
                 />
               </div>
             </div>

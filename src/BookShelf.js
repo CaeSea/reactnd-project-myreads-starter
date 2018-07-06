@@ -15,6 +15,7 @@ class BookShelf extends React.Component {
               <li key={book.id}>
                 <BookListing
                   book = {book}
+                  changeBookShelf = {this.props.changeBookShelf}
                 />
                 {/* Need to add a BookListing for every book on this shelf */}
               </li>
