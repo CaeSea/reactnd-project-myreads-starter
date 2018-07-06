@@ -7,21 +7,19 @@ import './App.css'
 class BookShelf extends React.Component {
   render() {
     return (
-      <div>
-        <div className="bookshelf">
-          <h2 className="bookshelf-title">{this.props.shelfName}</h2>
-          <div className="bookshelf-books">
-            <ol className="books-grid">
-              {this.props.booksOnShelf.map((book) => (
-                <li key={book.id}>
-                  <BookListing
-                    book = {book}
-                  />
-                  {/* Need to add a BookListing for every book on this shelf */}
-                </li>
-              ))}
-            </ol>
-          </div>
+      <div className="bookshelf">
+        <h2 className="bookshelf-title">{this.props.shelfName}</h2>
+        <div className="bookshelf-books">
+          <ol className="books-grid">
+            {this.props.booksOnShelf.map((book) => (
+              <li key={book.id}>
+                <BookListing
+                  book = {book}
+                />
+                {/* Need to add a BookListing for every book on this shelf */}
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     )
