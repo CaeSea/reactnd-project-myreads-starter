@@ -47,6 +47,7 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <SearchBooks
             setSearchPage={() => this.setState({ showSearchPage: false })}
+            changeBookShelf = {this.changeBookShelf}
           />
         ) : (
           <div className="list-books">
