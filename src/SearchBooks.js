@@ -12,6 +12,7 @@ class SearchBooks extends React.Component {
     searched: false
   }
 
+  //This uses the BooksAPI search method to search the API for books based on a user given query.
   updateQuery = (query) => {
     this.setState({ searched : true })
     this.setState({query})

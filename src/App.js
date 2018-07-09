@@ -17,7 +17,6 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then(bookDetails => (
     this.setState({ bookDetails })
     ))
-    //console.log(this.state.bookDetails)
   }
 
   //When the component initially loads, grab all books.

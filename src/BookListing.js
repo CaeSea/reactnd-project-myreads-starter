@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './App.css'
 
-// Covert this to a stateless component function
 function BookListing(props) {
   const { book, changeBookShelf, bookDetails } = props;
   return (

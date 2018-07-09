@@ -3,7 +3,6 @@ import BookListing from './BookListing.js'
 import PropTypes from 'prop-types'
 import './App.css'
 
-// Covert this to a stateless component function
 function BookShelf(props) {
   const { shelfName, changeBookShelf, booksOnShelf } = props;
   return (
