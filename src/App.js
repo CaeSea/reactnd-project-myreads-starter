@@ -8,13 +8,6 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
     bookDetails: [] //This array holds an array of objects, one for each book that is on a shelf.
   }
 
@@ -44,6 +37,8 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const { bookDetails } = this.state;
+    const { changeBookShelf } = this;
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -55,18 +50,18 @@ class BooksApp extends React.Component {
               <div>
                 <BookShelf
                   shelfName = 'Currently Reading'
-                  booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "currentlyReading")}
-                  changeBookShelf = {this.changeBookShelf}
+                  booksOnShelf = {bookDetails.filter((book) => book.shelf === "currentlyReading")}
+                  changeBookShelf = {changeBookShelf}
                 />
                 <BookShelf
                   shelfName = 'Want to Read'
-                  booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "wantToRead")}
-                  changeBookShelf = {this.changeBookShelf}
+                  booksOnShelf = {bookDetails.filter((book) => book.shelf === "wantToRead")}
+                  changeBookShelf = {changeBookShelf}
                 />
                 <BookShelf
                   shelfName = 'Read'
-                  booksOnShelf = {this.state.bookDetails.filter((book) => book.shelf === "read")}
-                  changeBookShelf = {this.changeBookShelf}
+                  booksOnShelf = {bookDetails.filter((book) => book.shelf === "read")}
+                  changeBookShelf = {changeBookShelf}
                 />
               </div>
             </div>
@@ -78,8 +73,8 @@ class BooksApp extends React.Component {
         <Route path="/search" render={() => (
           <SearchBooks
             setSearchPage={() => this.setState({ showSearchPage: false })}
-            changeBookShelf = {this.changeBookShelf}
-            bookDetails = {this.state.bookDetails}
+            changeBookShelf = {changeBookShelf}
+            bookDetails = {bookDetails}
           />
         )}/>
       </div>

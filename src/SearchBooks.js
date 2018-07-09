@@ -5,7 +5,6 @@ import BookListing from './BookListing.js'
 import './App.css'
 
 class SearchBooks extends React.Component {
-
   state = {
     query: '',
     queryResults: [],
@@ -29,6 +28,9 @@ class SearchBooks extends React.Component {
   }
 
   render () {
+    const { bookDetails, changeBookShelf } = this.props;
+    const { query, queryResults, searched } = this.state;
+    const { updateQuery } = this;
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -38,19 +40,19 @@ class SearchBooks extends React.Component {
             >Close
           </Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={e => this.updateQuery(e.target.value)}/>
+            <input type="text" placeholder="Search by title or author" value={query} onChange={e => updateQuery(e.target.value)}/>
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.searched && this.state.queryResults.length === 0 ? (
+            {searched && queryResults.length === 0 ? (
               <p>No Results</p>
               ) : (
-                this.state.queryResults.map((book) => (
+                queryResults.map((book) => (
                   <li key={book.id}>
                     <BookListing
                       book = {book}
-                      changeBookShelf = {this.props.changeBookShelf}
+                      changeBookShelf = {changeBookShelf}
                     />
                   </li>
               )))

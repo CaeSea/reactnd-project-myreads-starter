@@ -5,16 +5,17 @@ import './App.css'
 
 // Covert this to a stateless component function
 function BookShelf(props) {
+  const { shelfName, changeBookShelf, booksOnShelf } = props;
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">{props.shelfName}</h2>
+      <h2 className="bookshelf-title">{shelfName}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {props.booksOnShelf.map((book) => (
+          {booksOnShelf.map((book) => (
             <li key={book.id}>
               <BookListing
                 book = {book}
-                changeBookShelf = {props.changeBookShelf}
+                changeBookShelf = {changeBookShelf}
               />
             </li>
           ))}
