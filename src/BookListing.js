@@ -1,5 +1,5 @@
 import React from 'react'
-//import * as BooksAPI from './BooksAPI'
+import PropTypes from 'prop-types'
 import './App.css'
 
 // Covert this to a stateless component function
@@ -23,6 +23,12 @@ function BookListing(props) {
      <div className="book-authors">{book.authors}</div>
    </div>
   )
+}
+
+BookListing.propTypes = {
+  book: PropTypes.object.isRequired,
+  changeBookShelf: PropTypes.func.isRequired,
+  bookDetails: PropTypes.array.isRequired
 }
 
 export default BookListing;
