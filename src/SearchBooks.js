@@ -20,6 +20,8 @@ class SearchBooks extends React.Component {
     BooksAPI.search(query).then((results) => {
       const trueResults = Array.isArray(results)
       if(trueResults) {
+        // This filters the search results against the bookDetails array and changes to shelf to the right shelf.
+        results.map(book => (this.props.bookDetails.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
         this.setState({ queryResults: results })
       } else {
         this.setState({ queryResults: []})

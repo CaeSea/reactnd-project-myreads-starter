@@ -13,7 +13,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    bookDetails: [] //This array holds an array of objects, one for each book.
+    bookDetails: [] //This array holds an array of objects, one for each book that is on a shelf.
   }
 
   // This will fetch all books from the API and store them in the bookDetails array.
@@ -21,6 +21,7 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then(bookDetails => (
     this.setState({ bookDetails })
     ))
+    //console.log(this.state.bookDetails)
   }
 
   //When the component initially loads, grab all books.
@@ -28,16 +29,15 @@ class BooksApp extends React.Component {
     this.getBooks();
   }
 
-  //When the component changes, (when a user chaanges a select box option) re-get the books.
+  //When the component changes, (when a user changes a select box option) re-get the books.
   componentDidUpdate() {
     this.getBooks();
   }
 
   //When the user changes the books shelf, update our book and API.
   changeBookShelf(book, shelf) {
-    BooksAPI.update(book, shelf).then((response) => { // This updates each shelfs array of books.
+    BooksAPI.update(book, shelf).then((response) => { // This updates each shelves array of books.
       book.shelf = shelf;
-      //console.log(response);
     })
   }
 
@@ -48,6 +48,7 @@ class BooksApp extends React.Component {
           <SearchBooks
             setSearchPage={() => this.setState({ showSearchPage: false })}
             changeBookShelf = {this.changeBookShelf}
+            bookDetails = {this.state.bookDetails}
           />
         ) : (
           <div className="list-books">
