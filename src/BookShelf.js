@@ -4,27 +4,24 @@ import BookListing from './BookListing.js'
 import './App.css'
 
 // Covert this to a stateless component function
-class BookShelf extends React.Component {
-  render() {
-    return (
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.shelfName}</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {this.props.booksOnShelf.map((book) => (
-              <li key={book.id}>
-                <BookListing
-                  book = {book}
-                  changeBookShelf = {this.props.changeBookShelf}
-                />
-                {/* Need to add a BookListing for every book on this shelf */}
-              </li>
-            ))}
-          </ol>
-        </div>
+function BookShelf(props) {
+  return (
+    <div className="bookshelf">
+      <h2 className="bookshelf-title">{props.shelfName}</h2>
+      <div className="bookshelf-books">
+        <ol className="books-grid">
+          {props.booksOnShelf.map((book) => (
+            <li key={book.id}>
+              <BookListing
+                book = {book}
+                changeBookShelf = {props.changeBookShelf}
+              />
+            </li>
+          ))}
+        </ol>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default BookShelf;
